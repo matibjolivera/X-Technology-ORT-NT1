@@ -15,7 +15,7 @@ namespace X_Technology_ORTv2.Models
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(
-                    "Data Source=LAPTOP-NUA4L3R9; Initial Catalog=XTechnologyORT; Integrated Security=True"
+                    "Data Source=localhost; Initial Catalog=XTechnologyORT; user id=SA; pwd=XXX"
                 );
             }
         }
