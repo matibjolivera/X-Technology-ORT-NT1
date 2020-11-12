@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using X_Technology_ORTv2.Models;
 
 namespace X_Technology_ORTv2
 {
@@ -23,6 +25,7 @@ namespace X_Technology_ORTv2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<Context>(Options => Options.UseSqlServer(@"Data Source=localhost;Initial Catalog=XTechnologyORT;user id=SA; pwd=XXX!;"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
