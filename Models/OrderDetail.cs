@@ -6,7 +6,6 @@ namespace X_Technology_ORTv2.Models
     {
         public OrderDetail()
         {
-            Products = new List<Product>();
         }
 
         public int Id { get; set; }
@@ -15,6 +14,6 @@ namespace X_Technology_ORTv2.Models
         
         public float UnitPrice { get; set; }
         
-        public List<Product> Products { get; }
+        public Product Product { get; }
     }
 }
