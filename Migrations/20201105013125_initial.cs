@@ -103,7 +103,18 @@ namespace X_Technology_ORTv2.Migrations
                     Price = table.Column<float>(nullable: false),
                     Brand = table.Column<string>(nullable: true),
                     Category = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true)
+                    ImageUrl = table.Column<string>(nullable: true),
+                    OrderDetailId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Products_OrdersDetails_OrderDetailId",
+                        column: x => x.OrderDetailId,
+                        principalTable: "OrdersDetails",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -120,6 +131,11 @@ namespace X_Technology_ORTv2.Migrations
                 name: "IX_OrdersHeader_ShippingId",
                 table: "OrdersHeader",
                 column: "ShippingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_OrderDetailId",
+                table: "Products",
+                column: "OrderDetailId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
