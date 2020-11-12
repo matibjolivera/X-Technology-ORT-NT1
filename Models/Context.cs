@@ -8,16 +8,14 @@ namespace X_Technology_ORTv2.Models
         public virtual DbSet<OrderDetail> OrdersDetails { get; set; }
         public virtual DbSet<OrderHeader> OrdersHeader { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Shipping> Shippings { get; set;}
+        public virtual DbSet<Shipping> Shippings { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public Context()
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(
-                    "Data Source=localhost; Initial Catalog=XTechnologyORT; user id=SA; pwd=XXX"
-                );
-            }
+        }
+
+        public Context(DbContextOptions<Context> options) : base(options)
+        {
         }
     }
 }
