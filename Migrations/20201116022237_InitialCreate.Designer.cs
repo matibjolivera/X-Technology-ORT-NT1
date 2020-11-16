@@ -10,13 +10,8 @@ using X_Technology_ORTv2.Models;
 namespace X_Technology_ORTv2.Migrations
 {
     [DbContext(typeof(Context))]
-<<<<<<< HEAD:Migrations/20201105013125_initial.Designer.cs
-    [Migration("20201105013125_initial")]
-    partial class initial
-=======
-    [Migration("20201112020040_InitialCreate")]
+    [Migration("20201116022237_InitialCreate")]
     partial class InitialCreate
->>>>>>> d7d614f7073ef9ac830dbf69a0899e29eba009fd:Migrations/20201112020040_InitialCreate.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,12 +118,6 @@ namespace X_Technology_ORTv2.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD:Migrations/20201105013125_initial.Designer.cs
-                    b.Property<int?>("OrderDetailId")
-                        .HasColumnType("int");
-
-=======
->>>>>>> d7d614f7073ef9ac830dbf69a0899e29eba009fd:Migrations/20201112020040_InitialCreate.Designer.cs
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -140,11 +129,6 @@ namespace X_Technology_ORTv2.Migrations
 
                     b.HasKey("Id");
 
-<<<<<<< HEAD:Migrations/20201105013125_initial.Designer.cs
-                    b.HasIndex("OrderDetailId");
-
-=======
->>>>>>> d7d614f7073ef9ac830dbf69a0899e29eba009fd:Migrations/20201112020040_InitialCreate.Designer.cs
                     b.ToTable("Products");
                 });
 
@@ -198,16 +182,6 @@ namespace X_Technology_ORTv2.Migrations
                         .WithMany()
                         .HasForeignKey("ShippingId");
                 });
-<<<<<<< HEAD:Migrations/20201105013125_initial.Designer.cs
-
-            modelBuilder.Entity("X_Technology_ORTv2.Models.Product", b =>
-                {
-                    b.HasOne("X_Technology_ORTv2.Models.OrderDetail", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderDetailId");
-                });
-=======
->>>>>>> d7d614f7073ef9ac830dbf69a0899e29eba009fd:Migrations/20201112020040_InitialCreate.Designer.cs
 #pragma warning restore 612, 618
         }
     }

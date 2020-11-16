@@ -109,30 +109,7 @@ namespace X_Technology_ORTv2.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(nullable: true),
-                    Sku = table.Column<string>(nullable: true),
-                    Price = table.Column<float>(nullable: false),
-                    Brand = table.Column<string>(nullable: true),
-                    Category = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    OrderDetailId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_OrdersDetails_OrderDetailId",
-                        column: x => x.OrderDetailId,
-                        principalTable: "OrdersDetails",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersDetails_OrderHeaderId",
                 table: "OrdersDetails",
@@ -147,17 +124,10 @@ namespace X_Technology_ORTv2.Migrations
                 name: "IX_OrdersHeader_ShippingId",
                 table: "OrdersHeader",
                 column: "ShippingId");
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_OrderDetailId",
-                table: "Products",
-                column: "OrderDetailId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Products");
-
             migrationBuilder.DropTable(
                 name: "OrdersDetails");
 

@@ -116,9 +116,6 @@ namespace X_Technology_ORTv2.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderDetailId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -129,8 +126,6 @@ namespace X_Technology_ORTv2.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("Products");
                 });
@@ -184,13 +179,6 @@ namespace X_Technology_ORTv2.Migrations
                     b.HasOne("X_Technology_ORTv2.Models.Shipping", "Shipping")
                         .WithMany()
                         .HasForeignKey("ShippingId");
-                });
-
-            modelBuilder.Entity("X_Technology_ORTv2.Models.Product", b =>
-                {
-                    b.HasOne("X_Technology_ORTv2.Models.OrderDetail", null)
-                        .WithMany("Products")
-                        .HasForeignKey("OrderDetailId");
                 });
 #pragma warning restore 612, 618
         }

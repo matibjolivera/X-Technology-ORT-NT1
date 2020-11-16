@@ -15,7 +15,12 @@ namespace X_Technology_ORTv2.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            return RedirectToAction("Admin");
+        }
+
+        public async Task<IActionResult> Admin()
         {
             return View(await _context.OrdersDetails.ToListAsync());
         }
