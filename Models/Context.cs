@@ -17,17 +17,6 @@ namespace X_Technology_ORTv2.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Shipping> Shippings { get; set;}
 
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(
-                    "Data Source=localhost; Initial Catalog=XTechnologyORT; user id=SA; pwd=XXX"
-                );
-            }
-        }
-        */
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             OnModelCreatingPartial(modelBuilder);

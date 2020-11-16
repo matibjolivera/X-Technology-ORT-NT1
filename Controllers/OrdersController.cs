@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using X_Technology_ORTv2.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace X_Technology_ORTv2.Controllers
 {
@@ -8,9 +10,14 @@ namespace X_Technology_ORTv2.Controllers
         /**
          * Listar órdenes (OMS)
          */
-        public IActionResult Index()
+        private readonly Context _context;
+        public OrdersController(Context context)
         {
-            return View();
+            _context = context;
+        }
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.OrdersDetails.ToListAsync());
         }
 
         /**
@@ -40,4 +47,5 @@ namespace X_Technology_ORTv2.Controllers
             return View();
         }
     }
+
 }
