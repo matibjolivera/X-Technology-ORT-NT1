@@ -12,11 +12,6 @@ namespace X_Technology_ORTv2.Controllers
         {
             return View();
         }
-        
-        public Task<IActionResult> Admin()
-        {
-            return View("Admin");
-        }
 
         /**
          * Crear nueva orden y retorna a una vista de success o
