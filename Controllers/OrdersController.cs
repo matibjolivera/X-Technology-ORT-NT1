@@ -44,12 +44,26 @@ namespace X_Technology_ORTv2.Controllers
             
         }
 
-        /**
-         * Formulario de compra
-         */
+        // GET
         public IActionResult Checkout()
         {
             return View();
+        }
+
+        // POST
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout([Bind("ID,Quantity,UnitPrice,OrderHeaderId")] OrderDetail orderDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(orderDetail);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(orderDetail);
         }
     }
 
