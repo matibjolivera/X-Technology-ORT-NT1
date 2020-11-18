@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using X_Technology_ORTv2.Models;
 
 namespace X_Technology_ORTv2.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20201118225317_SeedDataInitialProducts")]
+    partial class SeedDataInitialProducts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,7 +137,7 @@ namespace X_Technology_ORTv2.Migrations
                             Id = 1,
                             Brand = "Samsung",
                             Category = "Sonido",
-                            ImageUrl = "https://dummyimage.com/600x400/000/fff",
+                            ImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Ftiendanaranja.com.py%2Ftienda-movil%2F21699-auriculares-samsung-level-on-wireless-pro-bluetooth.html&psig=AOvVaw1FI-87pR0hRpty8iNwB5Gj&ust=1605825463702000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLCDq5WUje0CFQAAAAAdAAAAABAG",
                             Price = 200f,
                             Sku = "1",
                             Title = "Auriculares"

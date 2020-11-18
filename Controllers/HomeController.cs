@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using X_Technology_ORTv2.Models;
 
@@ -11,16 +12,19 @@ namespace X_Technology_ORTv2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
+        private readonly Context _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        public HomeController(Context context)
         {
-            _logger = logger;
+            //_logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Home");
         }
 
         public IActionResult Privacy()
@@ -32,6 +36,11 @@ namespace X_Technology_ORTv2.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        async public Task<IActionResult> Home()
+        {
+            return View(await _context.Products.ToListAsync());
         }
     }
 }
