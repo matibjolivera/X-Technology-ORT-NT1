@@ -13,7 +13,8 @@ namespace X_Technology_ORTv2.Configuration
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("Products");
-            builder.HasData(
+            //builder.HasData(
+                /*
                 new Product
                 {
                     Id = 1,
@@ -32,7 +33,8 @@ namespace X_Technology_ORTv2.Configuration
                     Title = "Product_Test 3",
                     Price = 350
                 }
-            );
+                */
+            //);
         }
     }
 }

@@ -1,8 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using X_Technology_ORTv2.Configuration;
 
 namespace X_Technology_ORTv2.Models
 {
-    public class Context : DbContext
+    public partial class Context : DbContext
     {
         public virtual DbSet<Billing> Billings { get; set; }
         public virtual DbSet<OrderDetail> OrdersDetails { get; set; }
@@ -16,6 +17,21 @@ namespace X_Technology_ORTv2.Models
 
         public Context(DbContextOptions<Context> options) : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new BillingConfiguration());
+            modelBuilder.ApplyConfiguration(new ShippingConfiguration());
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public Billing getBilling(int id)
+        {
+            return this.Billings.Find(id);
         }
     }
 }

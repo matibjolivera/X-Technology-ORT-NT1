@@ -27,6 +27,10 @@ namespace X_Technology_ORTv2.Controllers
             return View(await _context.OrdersHeader.ToListAsync());
         }
 
+        public async Billing getBilling(int id)
+        {
+            return await _context.Billings.FindAsync(id);
+        }
         /**
          * Crear nueva orden y retorna a una vista de success o
          * failed según corresponda
