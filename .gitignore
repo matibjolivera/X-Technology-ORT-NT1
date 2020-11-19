@@ -2,3 +2,5 @@
 obj/
 bin/
 Startup.cs
+*.sln
+*.csproj
