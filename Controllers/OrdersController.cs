@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using X_Technology_ORTv2.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
+using System.Linq;
 
 namespace X_Technology_ORTv2.Controllers
 {
@@ -15,12 +17,15 @@ namespace X_Technology_ORTv2.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.OrdersDetails.ToListAsync());
+            return RedirectToAction("Admin");
         }
 
-       
+       public async Task<IActionResult> Admin()
+        {
+            return View(await _context.OrdersHeader.ToListAsync());
+        }
 
         /**
          * Crear nueva orden y retorna a una vista de success o
