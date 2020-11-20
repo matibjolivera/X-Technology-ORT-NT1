@@ -21,7 +21,7 @@ namespace X_Technology_ORTv2.Configuration
                     TotalPaid = 520,
                     PaymentMethod = "Paypal",
                     ShippingMethod = "A domicilio",
-                    Billing = ,
+                    Billing = Context.get,
                     Shipping = ,
                     Details = new List<OrderDetail>()
                     {
