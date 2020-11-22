@@ -42,10 +42,13 @@ namespace X_Technology_ORTv2.Controllers
         }
 
         /**
-         * Formulario de compra
+         * GET | Checkout
+         * Se recibe el Id del producto clickeado para comprar
          */
-        public IActionResult Checkout()
+        public IActionResult Checkout(int id)
         {
+
+            ViewBag.id = id;
             return View();
         }
     }

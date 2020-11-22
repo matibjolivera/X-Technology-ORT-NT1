@@ -14,6 +14,6 @@ namespace X_Technology_ORTv2.Models
         
         public float UnitPrice { get; set; }
         
-        public Product Product { get; }
+        public Product Product { get; set; }
     }
 }
