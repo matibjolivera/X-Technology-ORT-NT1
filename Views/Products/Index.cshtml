@@ -5,22 +5,25 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelProduct => product.Title)
+                    @product.Title
                 </td>
                 <td>
-                    @Html.DisplayFor(modelProduct => product.Sku)
+                    @product.Sku
                 </td>
                 <td>
-                    @Html.DisplayFor(modelProduct => product.Price)
+                    @product.Price
                 </td>
                 <td>
-                    @Html.DisplayFor(modelProduct => product.Brand)
+                    @product.Brand
                 </td>
                 <td>
-                    @Html.DisplayFor(modelProduct => product.Category)
+                    @product.Category
                 </td>
                 <td>
-                    <img src="@Html.DisplayFor(modelProduct => product.ImageUrl)" style="width: 500px; height: 500px;" />
+                    <img src="@product.ImageUrl" style="width: 100px; height: 100px;" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Checkout", "Orders", new { id = @product.Id })">Buy</a>
                 </td>
             </tr>
         }
