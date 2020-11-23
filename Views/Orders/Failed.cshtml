@@ -1,2 +1,8 @@
 <h2 style="color:red;">Algo ha ocurrido mal!</h2>
+<br />
+@if (ViewBag.message != null && ViewBag.message != "")
+{
+    <p>@ViewBag.message</p>
+}
+<br />
 <a asp-controller="Home" asp-action="Index">Volver a la Home</a>

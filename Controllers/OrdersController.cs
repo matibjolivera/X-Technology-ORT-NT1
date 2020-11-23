@@ -76,6 +76,9 @@ namespace X_Technology_ORTv2.Controllers
                 var orderHeader = orderHeaders.First();
                 DeleteOrderHeader(orderHeader);
                 return RedirectToAction("Admin", "Orders");
+            } else
+            {
+                ViewBag.message = "No se encontró la venta a eliminar.";
             }
             return View("Failed");
         }
