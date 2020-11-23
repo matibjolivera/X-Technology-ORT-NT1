@@ -22,9 +22,12 @@ namespace X_Technology_ORTv2.Controllers
             return RedirectToAction("Admin");
         }
 
-        public async Task<IActionResult> Admin()
+        public IActionResult Admin()
         {
-            return View(await _context.OrdersHeader.ToListAsync());
+            return View(_context.OrdersHeader
+                .Include(oh => oh.Shipping)
+                .Include(oh => oh.Details)
+                    .ThenInclude(od => od.Product));
         }
 
         /**
