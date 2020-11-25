@@ -2,6 +2,22 @@ namespace X_Technology_ORTv2.Models
 {
     public class Shipping
     {
+        public Shipping()
+        {
+            
+        }
+        
+        public Shipping(string firstname, string lastname, string address, string zipCode, string extraInformation, string province, string city)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Address = address;
+            ZipCode = zipCode;
+            ExtraInformation = extraInformation;
+            Province = province;
+            City = city;
+        }
+
         public int Id { get; set; }
         
         public string Firstname { get; set; }
