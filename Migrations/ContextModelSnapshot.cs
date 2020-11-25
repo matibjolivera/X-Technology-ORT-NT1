@@ -53,6 +53,9 @@ namespace X_Technology_ORTv2.Migrations
                     b.Property<int?>("OrderHeaderId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
@@ -62,6 +65,8 @@ namespace X_Technology_ORTv2.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("OrderHeaderId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrdersDetails");
                 });
@@ -168,6 +173,10 @@ namespace X_Technology_ORTv2.Migrations
                     b.HasOne("X_Technology_ORTv2.Models.OrderHeader", null)
                         .WithMany("Details")
                         .HasForeignKey("OrderHeaderId");
+
+                    b.HasOne("X_Technology_ORTv2.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("X_Technology_ORTv2.Models.OrderHeader", b =>

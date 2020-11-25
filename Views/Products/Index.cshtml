@@ -1,8 +1,30 @@
 @model IEnumerable<Product>
 
-@foreach (var product in Model)
-{
-    <td>
-        @Html.DisplayFor(modelProduct => product.Title)
-    </td>
-}
+    <table>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @product.Title
+                </td>
+                <td>
+                    @product.Sku
+                </td>
+                <td>
+                    @product.Price
+                </td>
+                <td>
+                    @product.Brand
+                </td>
+                <td>
+                    @product.Category
+                </td>
+                <td>
+                    <img src="@product.ImageUrl" style="width: 100px; height: 100px;" />
+                </td>
+                <td>
+                    <a href="@Url.Action("Checkout", "Orders", new { id = @product.Id })">Buy</a>
+                </td>
+            </tr>
+        }
+    </table>

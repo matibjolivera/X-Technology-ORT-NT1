@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using X_Technology_ORTv2.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace X_Technology_ORTv2.Controllers
 {
@@ -17,10 +19,16 @@ namespace X_Technology_ORTv2.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.OrdersDetails.ToListAsync());
+            return RedirectToAction("Admin");
         }
 
-       
+        public IActionResult Admin()
+        {
+            return View(_context.OrdersHeader
+                .Include(oh => oh.Shipping)
+                .Include(oh => oh.Details)
+                    .ThenInclude(od => od.Product));
+        }
 
         /**
          * Crear nueva orden y retorna a una vista de success o
@@ -42,11 +50,56 @@ namespace X_Technology_ORTv2.Controllers
         }
 
         /**
-         * Formulario de compra
+         * GET | Checkout
+         * Se recibe el Id del producto clickeado para comprar
          */
-        public IActionResult Checkout()
+        public async Task<IActionResult> Checkout(int id)
         {
-            return View();
+            return View(await _context.Products.FindAsync(id));
+        }
+
+        // GET | Delete Order Header
+        public async Task<IActionResult> Delete(int id)
+        {
+            OrderHeader orderHeader = await _context.OrdersHeader.FindAsync(id);
+            if (orderHeader != null)
+            {
+                return View(orderHeader);
+            }
+            return View("Failed");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmDelete(int id)
+        {
+            var orderHeaders = _context.OrdersHeader.Where(o => o.Id == id).Include(o => o.Details);
+            if (orderHeaders.Count() > 0)
+            {
+                var orderHeader = orderHeaders.First();
+                DeleteOrderHeader(orderHeader);
+                return RedirectToAction("Admin", "Orders");
+            } else
+            {
+                ViewBag.message = "No se encontró la venta a eliminar.";
+            }
+            return View("Failed");
+        }
+
+        private void DeleteOrderHeader(OrderHeader orderHeader)
+        {
+            DeleteOrdersDetails(orderHeader.Details);
+            _context.OrdersHeader.Remove(orderHeader);
+            _context.SaveChanges();
+        }
+
+        private void DeleteOrdersDetails(List<OrderDetail> details)
+        {
+            foreach (OrderDetail orderDetail in details)
+            {
+                _context.OrdersDetails.Remove(orderDetail);
+            }
+            _context.SaveChanges();
         }
     }
 
