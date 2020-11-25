@@ -17,10 +17,5 @@ namespace X_Technology_ORTv2.Models
         public string Province { get; set; }
         
         public string City { get; set; }
-
-        public string GetFullname()
-        {
-            return this.Firstname + " " + this.Lastname;
-        }
     }
 }

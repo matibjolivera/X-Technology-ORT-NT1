@@ -109,6 +109,7 @@ namespace X_Technology_ORTv2.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
             migrationBuilder.CreateIndex(
                 name: "IX_OrdersDetails_OrderHeaderId",
                 table: "OrdersDetails",
