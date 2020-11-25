@@ -31,7 +31,12 @@ namespace X_Technology_ORTv2.Controllers
         public IActionResult New(OrderHeaderViewModel model)
         {
             var Result = false;
+            
+            OrderHeader orderHeader = new OrderHeader(200, "MercadoPago", "OCA", model.Billing, model.Shipping);
 
+            _context.OrdersHeader.Add(orderHeader);
+            _context.SaveChanges();
+            
             if (Result)
             {
                 return View("Success");
