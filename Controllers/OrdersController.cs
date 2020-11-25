@@ -1,7 +1,11 @@
+using System;
+using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using X_Technology_ORTv2.Models;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using X_Technology_ORTv2.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,10 +17,12 @@ namespace X_Technology_ORTv2.Controllers
          * Listar órdenes (OMS)
          */
         private readonly Context _context;
+
         public OrdersController(Context context)
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
             return RedirectToAction("Admin");
@@ -34,28 +40,44 @@ namespace X_Technology_ORTv2.Controllers
          * Crear nueva orden y retorna a una vista de success o
          * failed según corresponda
          */
-        public IActionResult New()
+        [HttpPost]
+        public async Task<IActionResult> New(OrderHeaderViewModel model)
         {
-            var Result = false;
+            Product product = await _context.Products.FindAsync(model.ProductId);
 
-            if (Result)
+            if (product != null)
             {
-                return View("Success");
+                Billing billingTmp = model.Billing;
+                Shipping shippingTmp = model.Shipping;
+
+                OrderHeader orderHeader = new OrderHeader(product.Price, "MercadoPago", "OCA", billingTmp, shippingTmp);
+                Billing billing = new Billing(billingTmp.Firstname, billingTmp.Lastname, billingTmp.Document,
+                    billingTmp.Email);
+                Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
+                    shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
+                OrderDetail orderDetail = new OrderDetail(product);
+                
+                orderHeader.Details.Add(orderDetail);
+        
+                await _context.Billings.AddAsync(billing);
+                await _context.Shippings.AddAsync(shipping);
+                await _context.OrdersHeader.AddAsync(orderHeader);
+
+                await _context.SaveChangesAsync();
             }
-            else
-            {
-                return View("Failed");
-            }
-            
+
+            return View("Index");
         }
 
         /**
          * GET | Checkout
          * Se recibe el Id del producto clickeado para comprar
          */
-        public async Task<IActionResult> Checkout(int id)
+        public IActionResult Checkout(int id)
         {
-            return View(await _context.Products.FindAsync(id));
+            ViewData["ProductId"] = id;
+
+            return View();
         }
 
         // GET | Delete Order Header
@@ -102,5 +124,3 @@ namespace X_Technology_ORTv2.Controllers
             _context.SaveChanges();
         }
     }
-
-}

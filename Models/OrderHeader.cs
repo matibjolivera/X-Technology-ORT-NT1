@@ -1,18 +1,21 @@
+using System;
 using System.Collections.Generic;
+using X_Technology_ORTv2.Utils;
 
 namespace X_Technology_ORTv2.Models
 {
     public class OrderHeader
     {
+        private const int QuantityCharsReference = 8;
+
         public OrderHeader()
         {
             
         }
         
-        public OrderHeader(int id, string reference, float totalPaid, string paymentMethod, string shippingMethod, Billing billing, Shipping shipping)
+        public OrderHeader(float totalPaid, string paymentMethod, string shippingMethod, Billing billing, Shipping shipping)
         {
-            Id = id;
-            Reference = reference;
+            Reference = StringsUtil.RandomString(QuantityCharsReference);
             TotalPaid = totalPaid;
             PaymentMethod = paymentMethod;
             ShippingMethod = shippingMethod;
