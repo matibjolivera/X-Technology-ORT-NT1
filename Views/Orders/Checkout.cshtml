@@ -9,26 +9,26 @@
             <div class="row">
                 <div class="col-lg-12">
                     <form>
-                        @Html.HiddenFor(m => m.ProductId, new {@Value = ViewData["ProductId"]})
+                        <input data-val="true" data-val-required="The ProductId field is required." id="ProductId" name="ProductId" type="hidden" value="@ViewData["ProductId"]">
                         <h4 class="mb-3">Datos de facturación</h4>
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Firstname, "Nombre")
-                                @Html.TextBoxFor(m => m.Billing.Firstname, new {placeholder = "Ingrese nombre para facturación", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Billing.Firstname, new { placeholder = "Ingrese nombre para facturación", @class = "form-control" })
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Lastname, "Apellido")
-                                @Html.TextBoxFor(m => m.Billing.Lastname, new {placeholder = "Ingrese apellido para facturación", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Billing.Lastname, new { placeholder = "Ingrese apellido para facturación", @class = "form-control" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Document, "Número de documento")
-                                @Html.TextBoxFor(m => m.Billing.Document, new {placeholder = "Ingrese n° de documento para facturación", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Billing.Document, new { placeholder = "Ingrese n° de documento para facturación", @class = "form-control" })
                             </div>
                             <div class="col-lg-8 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Email, "E-mail")
-                                @Html.TextBoxFor(m => m.Billing.Email, new {placeholder = "Ingrese e-mail para facturación", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Billing.Email, new { placeholder = "Ingrese e-mail para facturación", @class = "form-control" })
                             </div>
                         </div>
 
@@ -38,27 +38,27 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Firstname, "Nombre")
-                                @Html.TextBoxFor(m => m.Shipping.Firstname, new {placeholder = "Ingrese nombre para envío", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Shipping.Firstname, new { placeholder = "Ingrese nombre para envío", @class = "form-control" })
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Lastname, "Apellido")
-                                @Html.TextBoxFor(m => m.Shipping.Lastname, new {placeholder = "Ingrese apellido para envío", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Shipping.Lastname, new { placeholder = "Ingrese apellido para envío", @class = "form-control" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Address, "Dirección completa")
-                                @Html.TextBoxFor(m => m.Shipping.Address, new {placeholder = "Ingrese su dirección completa", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Shipping.Address, new { placeholder = "Ingrese su dirección completa", @class = "form-control" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.ZipCode, "Código postal")
-                                @Html.TextBoxFor(m => m.Shipping.ZipCode, new {placeholder = "Ingrese código postal", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Shipping.ZipCode, new { placeholder = "Ingrese código postal", @class = "form-control" })
                             </div>
                             <div class="col-lg-8 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.ExtraInformation, "Información extra (opcional)")
-                                @Html.TextAreaFor(m => m.Shipping.ExtraInformation, new {placeholder = "Ingrese información extra en caso de ser necesario", @class = "form-control"})
+                                @Html.TextAreaFor(m => m.Shipping.ExtraInformation, new { placeholder = "Ingrese información extra en caso de ser necesario", @class = "form-control" })
                             </div>
                         </div>
                         <div class="row">
@@ -93,12 +93,12 @@
                                         new SelectListItem {Text = "Tucuman", Value = "Tucumán"},
                                     };
                                 }
-                                @Html.DropDownListFor(m => m.Shipping.Province, selectProvinces, new {@class = "form-control"})
+                                @Html.DropDownListFor(m => m.Shipping.Province, selectProvinces, new { @class = "form-control" })
                             </div>
 
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.City, "Ingrese su ciudad/localidad/barrio")
-                                @Html.TextBoxFor(m => m.Shipping.City, new {placeholder = "Ingrese ciudad", @class = "form-control"})
+                                @Html.TextBoxFor(m => m.Shipping.City, new { placeholder = "Ingrese ciudad", @class = "form-control" })
                             </div>
                         </div>
 
