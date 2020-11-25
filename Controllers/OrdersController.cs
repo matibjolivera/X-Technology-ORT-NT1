@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using X_Technology_ORTv2.Models;
@@ -7,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using X_Technology_ORTv2.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace X_Technology_ORTv2.Controllers
 {
@@ -23,7 +20,7 @@ namespace X_Technology_ORTv2.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return RedirectToAction("Admin");
         }
@@ -56,9 +53,9 @@ namespace X_Technology_ORTv2.Controllers
                 Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
                     shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
                 OrderDetail orderDetail = new OrderDetail(product);
-                
+
                 orderHeader.Details.Add(orderDetail);
-        
+
                 await _context.Billings.AddAsync(billing);
                 await _context.Shippings.AddAsync(shipping);
                 await _context.OrdersHeader.AddAsync(orderHeader);
@@ -101,7 +98,8 @@ namespace X_Technology_ORTv2.Controllers
                 var orderHeader = orderHeaders.First();
                 DeleteOrderHeader(orderHeader);
                 return RedirectToAction("Admin", "Orders");
-            } else
+            }
+            else
             {
                 ViewBag.message = "No se encontró la venta a eliminar.";
             }
@@ -124,3 +122,4 @@ namespace X_Technology_ORTv2.Controllers
             _context.SaveChanges();
         }
     }
+}
