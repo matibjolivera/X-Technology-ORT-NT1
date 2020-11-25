@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace X_Technology_ORTv2.Models
 {
     public class Shipping
@@ -20,18 +22,24 @@ namespace X_Technology_ORTv2.Models
 
         public int Id { get; set; }
         
+        [Required]
         public string Firstname { get; set; }
         
+        [Required]
         public string Lastname { get; set; }
         
+        [Required]
         public string Address { get; set; }
         
+        [Required]
         public string ZipCode { get; set; }
         
         public string ExtraInformation { get; set; }
         
+        [Required]
         public string Province { get; set; }
         
+        [Required]
         public string City { get; set; }
 
         public string GetFullname()
