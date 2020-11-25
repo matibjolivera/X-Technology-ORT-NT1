@@ -57,7 +57,7 @@ namespace X_Technology_ORTv2.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return View("Index");
+            return View("Success");
         }
 
         /**
@@ -75,11 +75,7 @@ namespace X_Technology_ORTv2.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             OrderHeader orderHeader = await _context.OrdersHeader.FindAsync(id);
-            if (orderHeader != null)
-            {
-                return View(orderHeader);
-            }
-            return View("Failed");
+            return orderHeader != null ? View(orderHeader) : View("Failed");
         }
 
         [HttpPost]
@@ -87,16 +83,13 @@ namespace X_Technology_ORTv2.Controllers
         public IActionResult ConfirmDelete(int id)
         {
             var orderHeaders = _context.OrdersHeader.Where(o => o.Id == id).Include(o => o.Details);
-            if (orderHeaders.Count() > 0)
+            if (orderHeaders.Any())
             {
                 var orderHeader = orderHeaders.First();
                 DeleteOrderHeader(orderHeader);
                 return RedirectToAction("Admin", "Orders");
             }
-            else
-            {
-                ViewBag.message = "No se encontró la venta a eliminar.";
-            }
+            ViewBag.message = "No se encontró la venta a eliminar.";
             return View("Failed");
         }
 
