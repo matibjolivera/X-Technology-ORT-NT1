@@ -1,5 +1,3 @@
-.vs/
 /obj/
 /bin/
-Startup.cs
-*.sln
+/Models/Context.cs

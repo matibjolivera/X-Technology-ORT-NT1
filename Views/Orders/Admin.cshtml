@@ -1,4 +1,4 @@
-﻿@model Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<OrderHeader, Product>
+﻿@model IEnumerable<X_Technology_ORTv2.Models.OrderDetail>
 
 @{
     ViewData["Title"] = "Admin";
@@ -13,71 +13,29 @@
     <thead>
         <tr>
             <th>
-                Reference
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                Total Paid
+                @Html.DisplayNameFor(model => model.UnitPrice)
             </th>
-            <th>
-                Payment Method
-            </th>
-            <th>
-                Shipping Method
-            </th>
-            <th>
-                Shipping Agent
-            </th>
-            <th>Details</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @item.Reference
-                </td>
-                <td>
-                    @item.TotalPaid
-                </td>
-                <td>
-                    @item.PaymentMethod
-                </td>
-                <td>
-                    @item.ShippingMethod
-                </td>
-                <td>
-                    @item.Shipping.GetFullname()
-                </td>
-                <td>
-                    <details>
-                        <summary>Details</summary>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Unit price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var orderDetail in item.Details)
-                                {
-                                    <tr>
-                                        <td>@orderDetail.Product.Title</td>
-                                        <td>@orderDetail.Quantity</td>
-                                        <td>@orderDetail.UnitPrice</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </details>
-                </td>
-                <td>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>
