@@ -49,24 +49,20 @@
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Firstname, "Nombre")
                                 @Html.TextBoxFor(m => m.Billing.Firstname, new { placeholder = "Ingrese nombre para facturación", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Billing.Firstname, "Ingrese nombre para facturación por favor.")
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Lastname, "Apellido")
                                 @Html.TextBoxFor(m => m.Billing.Lastname, new { placeholder = "Ingrese apellido para facturación", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Billing.Lastname, "Ingrese apellido para facturación por favor.")
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Document, "Número de documento")
                                 @Html.TextBoxFor(m => m.Billing.Document, new { placeholder = "Ingrese n° de documento para facturación", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Billing.Document, "Ingrese número de documento para facturación por favor.")
                             </div>
                             <div class="col-lg-8 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Billing.Email, "E-mail")
                                 @Html.TextBoxFor(m => m.Billing.Email, new { placeholder = "Ingrese e-mail para facturación", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Billing.Email, "Ingrese e-mail para facturación por favor.")
                             </div>
                         </div>
 
@@ -77,26 +73,22 @@
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Firstname, "Nombre")
                                 @Html.TextBoxFor(m => m.Shipping.Firstname, new { placeholder = "Ingrese nombre para envío", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Shipping.Firstname, "Ingrese nombre para envío por favor.")
                             </div>
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Lastname, "Apellido")
                                 @Html.TextBoxFor(m => m.Shipping.Lastname, new { placeholder = "Ingrese apellido para envío", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Shipping.Lastname, "Ingrese apellido para envío por favor.")
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Address, "Dirección completa")
                                 @Html.TextBoxFor(m => m.Shipping.Address, new { placeholder = "Ingrese su dirección completa", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Shipping.Address, "Ingrese dirección para envío por favor.")
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.ZipCode, "Código postal")
                                 @Html.TextBoxFor(m => m.Shipping.ZipCode, new { placeholder = "Ingrese código postal", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Shipping.ZipCode, "Ingrese código postal para envío por favor.")
                             </div>
                             <div class="col-lg-8 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.ExtraInformation, "Información extra (opcional)")
@@ -112,7 +104,6 @@
                             <div class="col-lg-6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.City, "Ingrese su ciudad/localidad/barrio")
                                 @Html.TextBoxFor(m => m.Shipping.City, new { placeholder = "Ingrese ciudad", @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.Shipping.City, "Ingrese ciudad/localidad/barrio para envío por favor.")
                             </div>
                         </div>
 
