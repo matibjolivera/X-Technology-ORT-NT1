@@ -14,10 +14,12 @@ namespace X_Technology_ORTv2.Controllers
          * Listar órdenes (OMS)
          */
         private readonly Context _context;
+
         public OrdersController(Context context)
         {
             _context = context;
         }
+
         public async Task<IActionResult> Index()
         {
             return View(await _context.OrdersDetails.ToListAsync());
@@ -30,22 +32,21 @@ namespace X_Technology_ORTv2.Controllers
         [HttpPost]
         public IActionResult New(OrderHeaderViewModel model)
         {
-            var Result = false;
-            
-            OrderHeader orderHeader = new OrderHeader(200, "MercadoPago", "OCA", model.Billing, model.Shipping);
+            Billing billingTmp = model.Billing;
+            Shipping shippingTmp = model.Shipping;
 
+            OrderHeader orderHeader = new OrderHeader(200, "MercadoPago", "OCA", billingTmp, shippingTmp);
+            Billing billing = new Billing(billingTmp.Firstname, billingTmp.Lastname, billingTmp.Document,
+                billingTmp.Email);
+            Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
+                shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
+
+            _context.Billings.Add(billing);
+            _context.Shippings.Add(shipping);
             _context.OrdersHeader.Add(orderHeader);
             _context.SaveChanges();
-            
-            if (Result)
-            {
-                return View("Success");
-            }
-            else
-            {
-                return View("Failed");
-            }
-            
+
+            return View("Index");
         }
 
         /**
@@ -56,5 +57,4 @@ namespace X_Technology_ORTv2.Controllers
             return View();
         }
     }
-
 }
