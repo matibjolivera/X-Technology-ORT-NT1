@@ -1,0 +1,153 @@
+@model X_Technology_ORTv2.ViewModels.OrderHeaderViewModel
+
+@using (Html.BeginForm("New", "Orders", FormMethod.Post))
+{
+    <main>
+        <section class="mb-4 container">
+            <h2 class="h1-responsive font-weight-bold text-center my-4">Formulario de pago</h2>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <form>
+                        <h4 class="mb-3">Datos de facturación</h4>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Billing.Firstname, "Nombre")
+                                @Html.TextBoxFor(m => m.Billing.Firstname, new {placeholder = "Ingrese nombre para facturación", @class = "form-control"})
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Billing.Lastname, "Apellido")
+                                @Html.TextBoxFor(m => m.Billing.Lastname, new {placeholder = "Ingrese apellido para facturación", @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Billing.Document, "Número de documento")
+                                @Html.TextBoxFor(m => m.Billing.Document, new {placeholder = "Ingrese n° de documento para facturación", @class = "form-control"})
+                            </div>
+                            <div class="col-lg-8 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Billing.Email, "E-mail")
+                                @Html.TextBoxFor(m => m.Billing.Email, new {placeholder = "Ingrese e-mail para facturación", @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h4 class="mt-3 mb-3">Datos de envío</h4>
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.Firstname, "Nombre")
+                                @Html.TextBoxFor(m => m.Shipping.Firstname, new {placeholder = "Ingrese nombre para envío", @class = "form-control"})
+                            </div>
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.Lastname, "Apellido")
+                                @Html.TextBoxFor(m => m.Shipping.Lastname, new {placeholder = "Ingrese apellido para envío", @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.Address, "Dirección completa")
+                                @Html.TextBoxFor(m => m.Shipping.Address, new {placeholder = "Ingrese su dirección completa", @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.ZipCode, "Código postal")
+                                @Html.TextBoxFor(m => m.Shipping.ZipCode, new {placeholder = "Ingrese código postal", @class = "form-control"})
+                            </div>
+                            <div class="col-lg-8 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.ExtraInformation, "Información extra (opcional)")
+                                @Html.TextAreaFor(m => m.Shipping.ExtraInformation, new {placeholder = "Ingrese información extra en caso de ser necesario", @class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg    -6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.Province, "Provincia")
+                                @{
+                                    var selectProvinces = new[]
+                                    {
+                                        new SelectListItem {Text = "Provincia de Buenos Aires", Value = "Buenos Aires"},
+                                        new SelectListItem {Text = "Ciudad Autónoma de Buenos Aires (Capital Federal)", Value = "CABA"},
+                                        new SelectListItem {Text = "Catamarca", Value = "Catamarca"},
+                                        new SelectListItem {Text = "Chaco", Value = "Chaco"},
+                                        new SelectListItem {Text = "Chubut", Value = "Chubut"},
+                                        new SelectListItem {Text = "Cordoba", Value = "Córdoba"},
+                                        new SelectListItem {Text = "Corrientes", Value = "Corrientes"},
+                                        new SelectListItem {Text = "Entre Rios", Value = "Entre Ríos"},
+                                        new SelectListItem {Text = "Formosa", Value = "Formosa"},
+                                        new SelectListItem {Text = "Jujuy", Value = "Jujuy"},
+                                        new SelectListItem {Text = "La Pampa", Value = "La Pampa"},
+                                        new SelectListItem {Text = "La Rioja", Value = "La Rioja"},
+                                        new SelectListItem {Text = "Mendoza", Value = "Mendoza"},
+                                        new SelectListItem {Text = "Misiones", Value = "Misiones"},
+                                        new SelectListItem {Text = "Neuquen", Value = "Neuquén"},
+                                        new SelectListItem {Text = "Rio Negro", Value = "Río Negro"},
+                                        new SelectListItem {Text = "Salta", Value = "Salta"},
+                                        new SelectListItem {Text = "San Juan", Value = "San Juan"},
+                                        new SelectListItem {Text = "San Luis", Value = "San Luis"},
+                                        new SelectListItem {Text = "Santa Cruz", Value = "Santa Cruz"},
+                                        new SelectListItem {Text = "Santa Fe", Value = "Santa Fe"},
+                                        new SelectListItem {Text = "Santiago del Estero", Value = "Santiago del Estero"},
+                                        new SelectListItem {Text = "Tierra del Fuego", Value = "Tierra del Fuego"},
+                                        new SelectListItem {Text = "Tucuman", Value = "Tucumán"},
+                                    };
+                                }
+                                @Html.DropDownListFor(m => m.Shipping.Province, selectProvinces, new {@class = "form-control"})
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                @Html.LabelFor(m => m.Shipping.City, "Ingrese su ciudad/localidad/barrio")
+                                @Html.TextBoxFor(m => m.Shipping.City, new {placeholder = "Ingrese ciudad", @class = "form-control"})
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <h4 class="mb-3">Método de envío</h4>
+                                <label for="oca">
+                                    <input type="radio" name="shipping_method" id="oca" value="OCA" class="mr-2">
+                                    <img id="logo_checkout"
+                                         src="https://lh5.googleusercontent.com/Q9mAi1aWQ_6X-8r67dRY3NEOSOrV70MH0T-KByD_4l2gy6EGdRJ0NAhpey37delwvOegeRzh">
+                                </label>
+                                <br>
+                                <label for="correo_argentino">
+                                    <input type="radio" name="shipping_method" id="correo_argentino"
+                                           value="Correo Argentino" class="mr-2">
+                                    <img id="logo_checkout"
+                                         src="https://www.vhv.rs/dpng/d/577-5775803_logo-correo-argentino-png-transparent-png.png">
+                                </label>
+                                <br>
+                                <label for="andreani">
+                                    <input type="radio" name="shipping_method" id="andreani" value="Andreani" class="mr-2">
+                                    <img id="logo_checkout"
+                                         src="https://virtual.andreani.com/assets/img/logo-andreani.png">
+                                </label>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-12 mb-3">
+                                <h4 class="mb-3">Método de pago</h4>
+                                <label for="mercadopago">
+                                    <input type="radio" name="payment_method" id="mercadopago" value="MercadoPago"
+                                           class="mr-2">
+                                    <img id="logo_checkout"
+                                         src="https://www.pinpng.com/pngs/m/424-4241166_mercado-pago-logo-png-volkswagen-fox-transparent-png.png">
+                                </label>
+                                <br>
+                                <label for="contrareembolso">
+                                    <input type="radio" name="payment_method" id="contrareembolso"
+                                           value="Contrareembolso" class="mr-2">
+                                    <img id="logo_checkout"
+                                         src="https://iphonefix.es/wp-content/uploads/2020/03/contrareembolso-png-5.png">
+                                </label>
+                            </div>
+                        </div>
+                        <input type="submit" id="btn-finish-purchase" class="btn btn-success mt-4" value="Finalizar compra">
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </main>
+}
