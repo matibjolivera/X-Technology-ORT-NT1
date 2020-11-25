@@ -1,5 +1,5 @@
 .vs/
-Startup.cs
-*.sln
 obj/
 bin/
+Startup.cs
+*.sln
