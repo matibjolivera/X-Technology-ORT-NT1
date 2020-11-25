@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using X_Technology_ORTv2.Models;
 using System.Threading.Tasks;
@@ -32,19 +33,31 @@ namespace X_Technology_ORTv2.Controllers
         [HttpPost]
         public IActionResult New(OrderHeaderViewModel model)
         {
-            Billing billingTmp = model.Billing;
-            Shipping shippingTmp = model.Shipping;
+            var productId = model.ProductId;
+            var productsSelect = from m in _context.Products select m;
+            var products = productsSelect.Where(p => p.Id.Equals(productId)).ToList();
+            var product = products.Find(p => p.Id.Equals(productId));
 
-            OrderHeader orderHeader = new OrderHeader(200, "MercadoPago", "OCA", billingTmp, shippingTmp);
-            Billing billing = new Billing(billingTmp.Firstname, billingTmp.Lastname, billingTmp.Document,
-                billingTmp.Email);
-            Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
-                shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
+            if (product != null)
+            {
+                Billing billingTmp = model.Billing;
+                Shipping shippingTmp = model.Shipping;
 
-            _context.Billings.Add(billing);
-            _context.Shippings.Add(shipping);
-            _context.OrdersHeader.Add(orderHeader);
-            _context.SaveChanges();
+                OrderHeader orderHeader = new OrderHeader(product.Price, "MercadoPago", "OCA", billingTmp, shippingTmp);
+                Billing billing = new Billing(billingTmp.Firstname, billingTmp.Lastname, billingTmp.Document,
+                    billingTmp.Email);
+                Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
+                    shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
+                OrderDetail orderDetail = new OrderDetail(product);
+                
+                orderHeader.Details.Add(orderDetail);
+        
+                _context.Billings.Add(billing);
+                _context.Shippings.Add(shipping);
+                _context.OrdersHeader.Add(orderHeader);
+
+                _context.SaveChanges();
+            }
 
             return View("Index");
         }
@@ -52,8 +65,11 @@ namespace X_Technology_ORTv2.Controllers
         /**
          * Formulario de compra
          */
+        [HttpGet]
         public IActionResult Checkout()
         {
+            ViewData["ProductId"] = Request.Form["ProductId"];
+
             return View();
         }
     }
