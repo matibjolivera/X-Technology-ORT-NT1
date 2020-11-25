@@ -1,3 +1,4 @@
+@model X_Technology_ORTv2.Models.MailMessage
 <!--Section: Contact-->
 <section class="mb-4 container">
     <!--Section heading-->
@@ -5,25 +6,30 @@
     <!--Section description-->
     <p class="w-responsive mx-auto mb-5">No dudes en contactarnos!</p>
 
+    @if (ViewBag.message != null && ViewBag.message != "" && ViewBag.type != null && ViewBag.type != "")
+    {
+        <p class="text-@ViewBag.type">@ViewBag.message</p>
+    }
+
     <div class="row">
         <!--Grid column-->
         <div class="col-md-9 mb-md-0 mb-5">
-            <form id="contact-form" name="contact-form">
+            <form asp-action="SendMessage">
                 <!--Grid row-->
                 <div class="row">
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="name" name="name" class="form-control" required />
-                            <label for="name" class="">Nombre</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <label asp-for="Name" class="">Nombre</label>
                         </div>
                     </div>
                     <!--Grid column-->
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="email" id="email" name="email" class="form-control" required />
-                            <label for="email" class="">Email</label>
+                            <input type="email" asp-for="Email" class="form-control" required />
+                            <label asp-for="Email" class="">Email</label>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -35,21 +41,19 @@
                     <div class="col-md-12">
                         <div class="md-form">
                             <textarea type="text"
-                                        id="message"
-                                        name="message"
-                                        rows="2"
-                                        class="form-control md-textarea"></textarea>
-                            <label for="message">Mensaje</label>
+                                      asp-for="Message"
+                                      rows="2"
+                                      class="form-control md-textarea"></textarea>
+                            <label asp-for="Message">Mensaje</label>
                         </div>
                     </div>
                 </div>
                 <!--Grid row-->
+                <div class="text-center text-md-left">
+                    <input class="submit btn btn-primary" type="submit" value="Submit" />
+                </div>
+                <div class="status"></div>
             </form>
-
-            <div class="text-center text-md-left">
-                <input class="submit btn btn-primary" type="submit" value="Submit" />
-            </div>
-            <div class="status"></div>
         </div>
         <!--Grid column-->
         <!--Grid column-->
@@ -75,3 +79,5 @@
     </div>
 </section>
 <!--Section: Contact -->
+
+
