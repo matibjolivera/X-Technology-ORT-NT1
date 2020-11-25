@@ -1,5 +1,10 @@
 @model X_Technology_ORTv2.ViewModels.OrderHeaderViewModel
-
+<style>
+    .logo_checkout {
+        max-height: 100px;
+        max-width: 100px;
+    }
+</style>
 @using (Html.BeginForm("New", "Orders", FormMethod.Post))
 {
     <main>
@@ -109,20 +114,20 @@
                                 <h4 class="mb-3">Método de envío</h4>
                                 <label for="oca">
                                     <input type="radio" name="shipping_method" id="oca" value="OCA" class="mr-2">
-                                    <img id="logo_checkout"
+                                    <img class="logo_checkout"
                                          src="https://lh5.googleusercontent.com/Q9mAi1aWQ_6X-8r67dRY3NEOSOrV70MH0T-KByD_4l2gy6EGdRJ0NAhpey37delwvOegeRzh">
                                 </label>
                                 <br>
                                 <label for="correo_argentino">
                                     <input type="radio" name="shipping_method" id="correo_argentino"
                                            value="Correo Argentino" class="mr-2">
-                                    <img id="logo_checkout"
+                                    <img class="logo_checkout"
                                          src="https://www.vhv.rs/dpng/d/577-5775803_logo-correo-argentino-png-transparent-png.png">
                                 </label>
                                 <br>
                                 <label for="andreani">
                                     <input type="radio" name="shipping_method" id="andreani" value="Andreani" class="mr-2">
-                                    <img id="logo_checkout"
+                                    <img class="logo_checkout"
                                          src="https://virtual.andreani.com/assets/img/logo-andreani.png">
                                 </label>
                             </div>
@@ -132,14 +137,14 @@
                                 <label for="mercadopago">
                                     <input type="radio" name="payment_method" id="mercadopago" value="MercadoPago"
                                            class="mr-2">
-                                    <img id="logo_checkout"
+                                    <img class="logo_checkout"
                                          src="https://www.pinpng.com/pngs/m/424-4241166_mercado-pago-logo-png-volkswagen-fox-transparent-png.png">
                                 </label>
                                 <br>
                                 <label for="contrareembolso">
                                     <input type="radio" name="payment_method" id="contrareembolso"
                                            value="Contrareembolso" class="mr-2">
-                                    <img id="logo_checkout"
+                                    <img class="logo_checkout"
                                          src="https://iphonefix.es/wp-content/uploads/2020/03/contrareembolso-png-5.png">
                                 </label>
                             </div>

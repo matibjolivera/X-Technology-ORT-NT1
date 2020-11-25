@@ -23,7 +23,7 @@ namespace X_Technology_ORTv2.Controllers
             return RedirectToAction("Index", "Products");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Us()
         {
             return View();
         }

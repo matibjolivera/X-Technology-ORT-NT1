@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Nosotros";
+}
+<style>
+    .custom-card {
+        width: 96%;
+        padding: 2%;
+        position: relative;
+        text-align: center;
+    }
+
+    .custom-card__img {
+        display: inline-block;
+        width: 150px;
+        height: 150px;
+        background-position: center;
+        background-size: cover;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+
+    .custom-card__name {
+        text-transform: uppercase;
+    }
+</style>
+<div class="d-flex justify-content-center flex-column text-center">
+    <p class="main-title text-center">Nosotros</p>
+    <div class="d-flex justify-content-center align-items-center flex-column flex-md-row p-2">
+        <div class="custom-card">
+            <div class="custom-card__img" style="background-image: url(/img/matias.jpg)"></div>
+            <p class="custom-card__name font-weight-bold">Matías Olivera</p>
+            <p class="text-primary">CTO</p>
+        </div>
+        <div class="custom-card">
+            <div class="custom-card__img" style="background-image: url(/img/ariel.jpg)"></div>
+            <p class="custom-card__name font-weight-bold">Ariel Bonfil</p>
+            <p class="text-secondary">Team Leader</p>
+        </div>
+        <div class="custom-card">
+            <div class="custom-card__img" style="background-image: url(/img/nicolas.jpg)"></div>
+            <p class="custom-card__name font-weight-bold">Nicolás Altman</p>
+            <p class="text-success">Developer</p>
+        </div>
+        <div class="custom-card">
+            <div class="custom-card__img" style="background-image: url(/img/jorge.jpg)"></div>
+            <p class="custom-card__name font-weight-bold">Jorge Serrano</p>
+            <p class="text-success">Developer</p>
+        </div>
+    </div>
+</div>
