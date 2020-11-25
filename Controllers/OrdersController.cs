@@ -31,12 +31,9 @@ namespace X_Technology_ORTv2.Controllers
          * failed según corresponda
          */
         [HttpPost]
-        public IActionResult New(OrderHeaderViewModel model)
+        public async Task<IActionResult> New(OrderHeaderViewModel model)
         {
-            var productId = model.ProductId;
-            var productsSelect = from m in _context.Products select m;
-            var products = productsSelect.Where(p => p.Id.Equals(productId)).ToList();
-            var product = products.Find(p => p.Id.Equals(productId));
+            Product product = await _context.Products.FindAsync(model.ProductId);
 
             if (product != null)
             {
@@ -52,11 +49,11 @@ namespace X_Technology_ORTv2.Controllers
                 
                 orderHeader.Details.Add(orderDetail);
         
-                _context.Billings.Add(billing);
-                _context.Shippings.Add(shipping);
-                _context.OrdersHeader.Add(orderHeader);
+                await _context.Billings.AddAsync(billing);
+                await _context.Shippings.AddAsync(shipping);
+                await _context.OrdersHeader.AddAsync(orderHeader);
 
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
 
             return View("Index");
