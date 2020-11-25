@@ -5,6 +5,35 @@
         max-width: 100px;
     }
 </style>
+@{
+    var selectProvinces = new[]
+    {
+        new SelectListItem {Text = "Provincia de Buenos Aires", Value = "Buenos Aires"},
+        new SelectListItem {Text = "Ciudad Autónoma de Buenos Aires (Capital Federal)", Value = "CABA"},
+        new SelectListItem {Text = "Catamarca", Value = "Catamarca"},
+        new SelectListItem {Text = "Chaco", Value = "Chaco"},
+        new SelectListItem {Text = "Chubut", Value = "Chubut"},
+        new SelectListItem {Text = "Cordoba", Value = "Córdoba"},
+        new SelectListItem {Text = "Corrientes", Value = "Corrientes"},
+        new SelectListItem {Text = "Entre Rios", Value = "Entre Ríos"},
+        new SelectListItem {Text = "Formosa", Value = "Formosa"},
+        new SelectListItem {Text = "Jujuy", Value = "Jujuy"},
+        new SelectListItem {Text = "La Pampa", Value = "La Pampa"},
+        new SelectListItem {Text = "La Rioja", Value = "La Rioja"},
+        new SelectListItem {Text = "Mendoza", Value = "Mendoza"},
+        new SelectListItem {Text = "Misiones", Value = "Misiones"},
+        new SelectListItem {Text = "Neuquen", Value = "Neuquén"},
+        new SelectListItem {Text = "Rio Negro", Value = "Río Negro"},
+        new SelectListItem {Text = "Salta", Value = "Salta"},
+        new SelectListItem {Text = "San Juan", Value = "San Juan"},
+        new SelectListItem {Text = "San Luis", Value = "San Luis"},
+        new SelectListItem {Text = "Santa Cruz", Value = "Santa Cruz"},
+        new SelectListItem {Text = "Santa Fe", Value = "Santa Fe"},
+        new SelectListItem {Text = "Santiago del Estero", Value = "Santiago del Estero"},
+        new SelectListItem {Text = "Tierra del Fuego", Value = "Tierra del Fuego"},
+        new SelectListItem {Text = "Tucuman", Value = "Tucumán"},
+    };
+}
 @using (Html.BeginForm("New", "Orders", FormMethod.Post))
 {
     <main>
@@ -69,35 +98,6 @@
                         <div class="row">
                             <div class="col-lg    -6 col-sm-12 mb-3">
                                 @Html.LabelFor(m => m.Shipping.Province, "Provincia")
-                                @{
-                                    var selectProvinces = new[]
-                                    {
-                                        new SelectListItem {Text = "Provincia de Buenos Aires", Value = "Buenos Aires"},
-                                        new SelectListItem {Text = "Ciudad Autónoma de Buenos Aires (Capital Federal)", Value = "CABA"},
-                                        new SelectListItem {Text = "Catamarca", Value = "Catamarca"},
-                                        new SelectListItem {Text = "Chaco", Value = "Chaco"},
-                                        new SelectListItem {Text = "Chubut", Value = "Chubut"},
-                                        new SelectListItem {Text = "Cordoba", Value = "Córdoba"},
-                                        new SelectListItem {Text = "Corrientes", Value = "Corrientes"},
-                                        new SelectListItem {Text = "Entre Rios", Value = "Entre Ríos"},
-                                        new SelectListItem {Text = "Formosa", Value = "Formosa"},
-                                        new SelectListItem {Text = "Jujuy", Value = "Jujuy"},
-                                        new SelectListItem {Text = "La Pampa", Value = "La Pampa"},
-                                        new SelectListItem {Text = "La Rioja", Value = "La Rioja"},
-                                        new SelectListItem {Text = "Mendoza", Value = "Mendoza"},
-                                        new SelectListItem {Text = "Misiones", Value = "Misiones"},
-                                        new SelectListItem {Text = "Neuquen", Value = "Neuquén"},
-                                        new SelectListItem {Text = "Rio Negro", Value = "Río Negro"},
-                                        new SelectListItem {Text = "Salta", Value = "Salta"},
-                                        new SelectListItem {Text = "San Juan", Value = "San Juan"},
-                                        new SelectListItem {Text = "San Luis", Value = "San Luis"},
-                                        new SelectListItem {Text = "Santa Cruz", Value = "Santa Cruz"},
-                                        new SelectListItem {Text = "Santa Fe", Value = "Santa Fe"},
-                                        new SelectListItem {Text = "Santiago del Estero", Value = "Santiago del Estero"},
-                                        new SelectListItem {Text = "Tierra del Fuego", Value = "Tierra del Fuego"},
-                                        new SelectListItem {Text = "Tucuman", Value = "Tucumán"},
-                                    };
-                                }
                                 @Html.DropDownListFor(m => m.Shipping.Province, selectProvinces, new { @class = "form-control" })
                             </div>
 
