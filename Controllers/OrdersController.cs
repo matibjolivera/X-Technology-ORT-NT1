@@ -63,7 +63,7 @@ namespace X_Technology_ORTv2.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return View("Index");
+            return View("Success");
         }
 
         /**
