@@ -7,6 +7,11 @@ namespace X_Technology_ORTv2.Models
     public class OrderHeader
     {
         private const int QuantityCharsReference = 8;
+
+        public OrderHeader()
+        {
+            
+        }
         
         public OrderHeader(float totalPaid, string paymentMethod, string shippingMethod, Billing billing, Shipping shipping)
         {
