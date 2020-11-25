@@ -48,16 +48,10 @@ namespace X_Technology_ORTv2.Controllers
                 Shipping shippingTmp = model.Shipping;
 
                 OrderHeader orderHeader = new OrderHeader(product.Price, "MercadoPago", "OCA", billingTmp, shippingTmp);
-                Billing billing = new Billing(billingTmp.Firstname, billingTmp.Lastname, billingTmp.Document,
-                    billingTmp.Email);
-                Shipping shipping = new Shipping(shippingTmp.Firstname, shippingTmp.Lastname, shippingTmp.Address,
-                    shippingTmp.ZipCode, shippingTmp.ExtraInformation, shippingTmp.Province, shippingTmp.City);
                 OrderDetail orderDetail = new OrderDetail(product);
 
                 orderHeader.Details.Add(orderDetail);
 
-                await _context.Billings.AddAsync(billing);
-                await _context.Shippings.AddAsync(shipping);
                 await _context.OrdersHeader.AddAsync(orderHeader);
 
                 await _context.SaveChangesAsync();
