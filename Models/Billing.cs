@@ -23,5 +23,15 @@ namespace X_Technology_ORTv2.Models
         public string Document { get; set; }
         
         public string Email { get; set; }
+        
+        public string GetFullname()
+        {
+            return Firstname + " " + Lastname;
+        }
+
+        public string GetData()
+        {
+            return GetFullname() + " - DNI: " + Document + " - " + Email;
+        }
     }
 }

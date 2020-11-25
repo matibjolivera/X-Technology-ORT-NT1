@@ -29,6 +29,7 @@ namespace X_Technology_ORTv2.Controllers
         {
             return View(_context.OrdersHeader
                 .Include(oh => oh.Shipping)
+                .Include(oh => oh.Billing)
                 .Include(oh => oh.Details)
                     .ThenInclude(od => od.Product));
         }
