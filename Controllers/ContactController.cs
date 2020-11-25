@@ -21,12 +21,13 @@ namespace X_Technology_ORTv2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SendMessage(MailMessage mailMessage)
         {
-            ViewBag.message = "Verify your message!";
+            ViewBag.message = "Algo ha ocurrido! Los datos no se pudieron enviar correctamente.";
             ViewBag.type = "danger";
             if (ModelState.IsValid)
             {
-                ViewBag.message = "Your message was sent successfully";
+                ViewBag.message = "Datos enviados exitosamente!";
                 ViewBag.type = "success";
+                ModelState.Clear();
             }
             return View("Index");
         }
