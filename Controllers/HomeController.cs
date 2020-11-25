@@ -23,11 +23,6 @@ namespace X_Technology_ORTv2.Controllers
             return RedirectToAction("Index", "Products");
         }
 
-        public IActionResult Us()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

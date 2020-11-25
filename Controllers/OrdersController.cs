@@ -29,6 +29,7 @@ namespace X_Technology_ORTv2.Controllers
         {
             return View(_context.OrdersHeader
                 .Include(oh => oh.Shipping)
+                .Include(oh => oh.Billing)
                 .Include(oh => oh.Details)
                     .ThenInclude(od => od.Product));
         }
@@ -47,7 +48,7 @@ namespace X_Technology_ORTv2.Controllers
                 Billing billingTmp = model.Billing;
                 Shipping shippingTmp = model.Shipping;
 
-                OrderHeader orderHeader = new OrderHeader(product.Price, "MercadoPago", "OCA", billingTmp, shippingTmp);
+                OrderHeader orderHeader = new OrderHeader(product.Price, model.PaymentMethod, model.ShippingMethod, billingTmp, shippingTmp);
                 OrderDetail orderDetail = new OrderDetail(product);
 
                 orderHeader.Details.Add(orderDetail);

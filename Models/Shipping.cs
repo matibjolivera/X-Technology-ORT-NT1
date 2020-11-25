@@ -44,7 +44,12 @@ namespace X_Technology_ORTv2.Models
 
         public string GetFullname()
         {
-            return this.Firstname + " " + this.Lastname;
+            return Firstname + " " + Lastname;
+        }
+
+        public string GetData()
+        {
+            return GetFullname() + " - " + Address + " (" + ZipCode + "), " + City + ", " + Province + " - " + ExtraInformation;
         }
     }
 }

@@ -22,7 +22,10 @@
                 Método de envío
             </th>
             <th>
-                Persona del envío
+                Datos de facturación
+            </th>
+            <th>
+                Datos de envío
             </th>
             <th>Detalles</th>
             <th></th>
@@ -45,7 +48,10 @@
                     @item.ShippingMethod
                 </td>
                 <td>
-                    @item.Shipping.GetFullname()
+                    @item.Billing.GetData()
+                </td>
+                <td>
+                    @item.Shipping.GetData()
                 </td>
                 <td>
                     <details>
