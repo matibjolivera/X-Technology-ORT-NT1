@@ -21,5 +21,10 @@ namespace X_Technology_ORTv2.Utils
 
             return builder.ToString();
         }
+
+        public static bool ValidateString(string str)
+        {
+            return str != null && str != "";
+        }
     }
 }

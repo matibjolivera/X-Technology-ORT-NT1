@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using X_Technology_ORTv2.ViewModels;
 using System.Collections.Generic;
+using X_Technology_ORTv2.Utils;
+using System;
 
 namespace X_Technology_ORTv2.Controllers
 {
@@ -31,7 +33,7 @@ namespace X_Technology_ORTv2.Controllers
                 .Include(oh => oh.Shipping)
                 .Include(oh => oh.Billing)
                 .Include(oh => oh.Details)
-                    .ThenInclude(od => od.Product));
+                .ThenInclude(od => od.Product));
         }
 
         /**
@@ -43,12 +45,9 @@ namespace X_Technology_ORTv2.Controllers
         {
             Product product = await _context.Products.FindAsync(model.ProductId);
 
-            if (product != null)
+            if (product != null && hasErrors(model) != false)
             {
-                Billing billingTmp = model.Billing;
-                Shipping shippingTmp = model.Shipping;
-
-                OrderHeader orderHeader = new OrderHeader(product.Price, model.PaymentMethod, model.ShippingMethod, billingTmp, shippingTmp);
+                OrderHeader orderHeader = new OrderHeader(product.Price, model.PaymentMethod, model.ShippingMethod, model.Billing, model.Shipping);
                 OrderDetail orderDetail = new OrderDetail(product);
 
                 orderHeader.Details.Add(orderDetail);
@@ -56,9 +55,29 @@ namespace X_Technology_ORTv2.Controllers
                 await _context.OrdersHeader.AddAsync(orderHeader);
 
                 await _context.SaveChangesAsync();
-            }
 
-            return View("Success");
+                return View("Success");
+            }
+            return View("Failed");
+        }
+
+        private bool hasErrors(OrderHeaderViewModel model)
+        {
+           return StringsUtil.ValidateString(model.PaymentMethod) && StringsUtil.ValidateString(model.ShippingMethod) &&
+                ValidateShipping(model.Shipping) && ValidateBilling(model.Billing);
+        }
+
+        private bool ValidateShipping(Shipping shipping)
+        {
+            return shipping != null && StringsUtil.ValidateString(shipping.Address) && StringsUtil.ValidateString(shipping.City)
+                && StringsUtil.ValidateString(shipping.Firstname) && StringsUtil.ValidateString(shipping.Lastname)
+                && StringsUtil.ValidateString(shipping.Province) && StringsUtil.ValidateString(shipping.ZipCode);
+        }
+
+        private bool ValidateBilling(Billing billing)
+        {
+            return billing != null && StringsUtil.ValidateString(billing.Document) && StringsUtil.ValidateString(billing.Email)
+                && StringsUtil.ValidateString(billing.Firstname) && StringsUtil.ValidateString(billing.Lastname);
         }
 
         /**

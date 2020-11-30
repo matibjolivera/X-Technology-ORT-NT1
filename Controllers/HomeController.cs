@@ -11,13 +11,6 @@ namespace X_Technology_ORTv2.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
         public IActionResult Index()
         {
             return RedirectToAction("Index", "Products");
