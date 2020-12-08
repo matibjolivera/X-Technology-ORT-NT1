@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using X_Technology_ORTv2.Utils;
 
 namespace X_Technology_ORTv2.Models
@@ -27,22 +26,16 @@ namespace X_Technology_ORTv2.Models
 
         public int Id { get; set; }
         
-        [Required]
         public string Reference { get; set; }
         
-        [Required]
         public float TotalPaid { get; set; }
         
-        [Required]
         public string PaymentMethod { get; set; }
         
-        [Required]
         public string ShippingMethod { get; set; }
         
-        [Required]
         public Billing Billing { get; set; }
         
-        [Required]
         public Shipping Shipping { get; set; }
         
         public List<OrderDetail> Details { get; set; }
